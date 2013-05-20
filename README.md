@@ -65,8 +65,8 @@ This scripts need to be launch periodically (using crontab for example):
 	cleanTokens.php				every day			OK			delete old Tokens (more than 30 days old)
 	backup.php					every day			OK			dump the database
 
-BASE DE DONNEES
----------------
+DATABASE
+--------
 The database uses MySQL with InnoDB.
 
 Scheme
