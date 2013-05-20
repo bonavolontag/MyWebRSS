@@ -22,6 +22,15 @@ The database can be created using the **mywebrss.sql** file.
 
 The **api/** and **cron/** need a PHP server. The configuration of the MySQL database needs to be set in the **conf.php** file in each folder.
 
+If your **api/** server doesn't use SSL, you may want to comment this lines in **api/.htaccess**:
+
+	RewriteCond %{SERVER_PORT} 80 
+	RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+To use the **cron/backup.php** script, you have to set your **mysqldump** executable path in **cron/conf.php**:
+
+	$mysqldump = "/opt/lampp/bin/mysqldump";
+
 API
 ---
 The api.mywebrss.net address offers the hability to get datas in JSON. These are the URL (rewriting with .htaccess):
