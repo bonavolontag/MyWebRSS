@@ -31,6 +31,10 @@ To use the **cron/backup.php** script, you have to set your **mysqldump** execut
 
 	$mysqldump = "/opt/lampp/bin/mysqldump";
 
+The client can be installed in Firefox products with the page **html5/install.html**. The manifest path needs to be set:
+
+	var manifestUrl = 'http://html5.mywebrss.net/manifest.webapp';
+
 API
 ---
 The api.mywebrss.net address offers the hability to get datas in JSON. These are the URL (rewriting with .htaccess):
