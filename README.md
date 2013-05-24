@@ -45,13 +45,14 @@ The api.mywebrss.net address offers the hability to get datas in JSON. These are
 							       /show		->	showFeed.php		OK			token (id), feed (id), [page]
 								   /add			->	addFeed.php			OK			token (id), feed (url)
 								   /delete		->	deleteFeed.php					token (id), feed (id)
-							       /show		->	showArticle.php		OK			token (id), article (id)
+								   /unread		->	unreadFeed.php		OK			token (id), feed (id)
+							  /article/show		->	showArticle.php		OK			token (id), article (id)
 							  /user/signin		->	signin.php			OK			email, password, confirm_password
 							       /login		->	login.php			OK			email, password
 							       /logout		->	logout.php			OK			token (id)
 								   /password	->	changePassword.php				token (id), old_password, password, confirm_password
 
-The request **/user/login** returns a session Token. It is valid for 30 days if the session is not disconnected manually (**/user/logout**).
+The request **/user/login** returns a session Token. It is valid for 7 days by default if the session is not disconnected manually by **/user/logout**.
 
 For each request (except **/user/signin** and **/user/login**), the Token is needed, to identify the user.
 
@@ -65,8 +66,8 @@ This scripts need to be launch periodically (using crontab for example):
 	-----------------------------------------------------------
 	cleanFeeds.php				every day			OK			delete unused feeds
 	refreshFeeds.php			every minutes		OK			refresh articles for feeds (get new datas every 5 minutes)
-	cleanArticles.php			every day						delete old articles (2 months for example)
-	cleanTokens.php				every day			OK			delete old Tokens (more than 30 days old)
+	cleanArticles.php			every day			OK			delete old articles (30 days for example)
+	cleanTokens.php				every day			OK			delete old Tokens (more than 7 days old by default)
 	backup.php					every day			OK			dump the database
 
 DATABASE
@@ -130,7 +131,7 @@ Detail
 TODO
 ----
 Informations in this document will be implemented in beta version. For the service to be usefull, this could be added:
-* import a list of RSS feeds from a OPML file
+* import a list of RSS feeds from an OPML file
 * language support
 * adding a share button (Twitter, Facebook)
 * add a developper key system for the API
