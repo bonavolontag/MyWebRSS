@@ -64,10 +64,10 @@ This scripts need to be launch periodically (using crontab for example):
 	
 	Script					|	Frequency		|	State	|	Description
 	-----------------------------------------------------------
-	cleanFeeds.php				every day			OK			delete unused feeds
+	cleanFeeds.php				every hour			OK			delete unused feeds
 	refreshFeeds.php			every minutes		OK			refresh articles for feeds (get new datas every 5 minutes)
-	cleanArticles.php			every day			OK			delete old articles (30 days for example)
-	cleanTokens.php				every day			OK			delete old Tokens (more than 7 days old by default)
+	cleanArticles.php			every hour			OK			delete old articles (30 days for example)
+	cleanTokens.php				every hour			OK			delete old Tokens (more than 7 days old by default)
 	backup.php					every day			OK			dump the database
 
 DATABASE
