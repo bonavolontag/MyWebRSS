@@ -110,6 +110,7 @@ Detail
 			feed_title				VARCHAR(255)
 			feed_description		TEXT
 			feed_date				INT(10)			linux timestamp
+			feed_error				INT(1)
 		=> feed_id PRIMARY auto_increment
 		=> feed_url UNIQUE
 	articles		articles of each RSS feeds
