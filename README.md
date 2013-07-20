@@ -39,18 +39,22 @@ API
 ---
 The api.mywebrss.net address offers the hability to get datas in JSON. These are the URL (rewriting with .htaccess):
 	
-	URL Rewriting								|	Script			|	State	|	Parameters
-	----------------------------------------------------------------------------------------------------------------------------------------------------
-	http(s)://api.mywebrss.net/feed/list		->	listFeeds.php		OK			token (id)
-							       /show		->	showFeed.php		OK			token (id), feed (id), [page]
-								   /add			->	addFeed.php			OK			token (id), feed (url)
-								   /delete		->	deleteFeed.php					token (id), feed (id)
-								   /unread		->	unreadFeed.php		OK			token (id), feed (id)
-							  /article/show		->	showArticle.php		OK			token (id), article (id)
-							  /user/signin		->	signin.php			OK			email, password, confirm_password
-							       /login		->	login.php			OK			email, password
-							       /logout		->	logout.php			OK			token (id)
-								   /password	->	changePassword.php				token (id), old_password, password, confirm_password
+	URL											|	Request parameters										|	Result variables
+	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	http(s)://api.mywebrss.net/feed/add				token (id), feed (url)										success, [error], feed (id)
+								   /delete			token (id), feed (id)										success, [error]
+								   /import			token (id), file (opml content)								success, [error], percentage (of added feeds)
+							       /list			token (id)													success, [error], result { id, title, description, unread (articles count) }
+							       /show			token (id), feed (id), [articles_count], [page]				success, [error], feed (title), result { id, title, description, url, image, date, feed (title), status ("" or "new" }
+							  /article/unread		token (id), article (id)									success, [error]
+							  /user/login			email, password												success, [error], token (id)
+							       /logout			token (id)													success, [error]
+								   /password		token (id), old_password, password, confirm_password		success, [error]
+							       /signin			email, password, confirm_password							success, [error]
+
+If the **success** variable returned is set to 0, the **error* variable indicate the reason of failure (the name of the parameter of the request, or a full sentence).
+
+The **result** variable, if present, is an array and includes the variables shown between the {}.
 
 The request **/user/login** returns a session Token. It is valid for 7 days by default if the session is not disconnected manually by **/user/logout**.
 
