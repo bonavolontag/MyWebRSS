@@ -44,7 +44,7 @@ The api.mywebrss.net address offers the hability to get datas in JSON. These are
 	http(s)://api.mywebrss.net/feed/add				token (id), feed (url)										success, [error], feed (id)
 								   /delete			token (id), feed (id)										success, [error]
 								   /import			token (id), file (opml content)								success, [error], percentage (of added feeds)
-							       /list			token (id)													success, [error], result { id, title, description, unread (articles count) }
+							       /list			token (id)													success, [error], result { id, title, description, error (0 or 1), unread (articles count) }
 							       /show			token (id), feed (id), [articles_count], [page]				success, [error], feed (title), result { id, title, description, url, image, date, feed (title), status ("" or "new" }
 							  /article/unread		token (id), article (id)									success, [error]
 							  /user/login			email, password												success, [error], token (id)
@@ -66,13 +66,13 @@ CRON
 ----
 This scripts need to be launch periodically (using crontab for example):
 	
-	Script					|	Frequency		|	State	|	Description
-	-----------------------------------------------------------
-	cleanFeeds.php				every hour			OK			delete unused feeds
-	refreshFeeds.php			every minutes		OK			refresh articles for feeds (get new datas every 5 minutes)
-	cleanArticles.php			every hour			OK			delete old articles (30 days for example)
-	cleanTokens.php				every hour			OK			delete old Tokens (more than 7 days old by default)
-	backup.php					every day			OK			dump the database
+	Script					|	Frequency		|	Description
+	----------------------------------------------------------------------------------------------------------
+	cleanFeeds.php				every hour			delete unused feeds
+	refreshFeeds.php			every minutes		refresh articles for feeds (get new datas every 5 minutes)
+	cleanArticles.php			every hour			delete old articles (30 days for example)
+	cleanTokens.php				every hour			delete old Tokens (more than 7 days old by default)
+	backup.php					every day			dump the database
 
 DATABASE
 --------
