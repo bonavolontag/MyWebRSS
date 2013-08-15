@@ -90,6 +90,7 @@ Detail
 			user_id					BIGINT(10)
 			user_email				VARCHAR(255)
 			user_pass				VARCHAR(40)		SHA-1 with salt (mywebrss)
+			user_lastlogin			INT(10)			linux timestamp
 		=> user_id PRIMARY auto_increment
 		=> user_email UNIQUE
 	user_feeds		RSS feeds used by each users
