@@ -89,7 +89,7 @@ Detail
 	users			users informations
 			user_id					BIGINT(10)
 			user_email				VARCHAR(255)
-			user_pass				VARCHAR(40)		SHA-1 with salt (**mywebrss**)
+			user_pass				VARCHAR(40)		SHA-1 with salt (mywebrss)
 		=> user_id PRIMARY auto_increment
 		=> user_email UNIQUE
 	user_feeds		RSS feeds used by each users
@@ -136,8 +136,8 @@ Detail
 TODO
 ----
 Informations in this document will be implemented in beta version. For the service to be usefull, this could be added:
-* import a list of RSS feeds from an OPML file
 * language support
 * adding a share button (Twitter, Facebook)
 * add a developper key system for the API
 * change the email address (with confirmation email sent)
+* delete the account
