@@ -57,13 +57,14 @@ The api.mywebrss.net address offers the hability to get datas in JSON. These are
 							       /list			token (id)													success, [error], result { id, title, description, error (0 or 1), unread (articles count) }
 							       /show			token (id), feed (id), [articles_count], [page]				success, [error], feed (title), result { id, title, description, url, image, date, feed (title), status ("" or "new" }
 							  /article/unread		token (id), article (id)									success, [error]
-							  /user/login			token (personna assertion)									success, [error], email
+							  /user/login			assertion (personna)										success, [error], token
+							       /logout			token (id)													success, [error]
 
 If the **success** variable returned is set to 0, the **error* variable indicate the reason of failure (the name of the parameter of the request, or a full sentence).
 
 The **result** variable, if present, is an array and includes the variables shown between the {}.
 
-For each request, the Token (Persona assertion) is needed, to identify the user. The request **/user/login** checks it and returns the email address associated with the assertion.
+For each request, the Token is needed, to identify the user. The request **/user/login** checks the Persona assertion and returns the email address associated with it, and generate a token.
 
 The use of HTTPS allow more secure exchanges, for the sending of the the Token.
 
@@ -76,6 +77,7 @@ This scripts need to be launch periodically (using crontab for example):
 	backup.php					every day			dump the database
 	cleanArticles.php			every hour			delete old articles (30 days for example)
 	cleanFeeds.php				every hour			delete unused feeds
+	cleanTokens.php				every hour			delete old Tokens
 	cleanUsers.php				every hour			delete inactive users
 	refreshFeeds.php			every minutes		refresh articles for feeds (get new datas every 5 minutes)
 
@@ -85,7 +87,7 @@ The database uses MySQL with InnoDB.
 
 Scheme
 		
-		users	-------<	user_feeds	>-------	 feeds	-------<	articles
+		tokens	>-------	users	-------<	user_feeds	>-------	 feeds	-------<	articles
 		
 		users	-------<	user_articles	>-------	 articles
 
@@ -97,6 +99,12 @@ Detail
 			user_lastlogin			INT(10)			linux timestamp
 		=> user_id PRIMARY auto_increment
 		=> user_email UNIQUE
+	tokens      Tokens of each users
+			token_id				VARCHAR(40)		random SHA-1 with salt (token_date, user_ref)
+			user_ref				BIGINT(10)
+			token_date				INT(10)			linux timestamp
+		=> token_id PRIMARY
+		=> user_ref ON DELETE CASCADE ON UPDATE CASCADE
 	user_feeds		RSS feeds used by each users
 			user_ref				BIGINT(10)
 			feed_ref				BIGINT(10)
