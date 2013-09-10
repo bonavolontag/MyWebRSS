@@ -110,7 +110,7 @@ Detail
 			feed_ref				BIGINT(10)
 		=> (user_ref, feed_ref) PRIMARY
 		=> user_ref ON DELETE CASCADE ON UPDATE CASCADE
-		=> feed_ref ON DELETE RESTRICT ON UPDATE CASCADE
+		=> feed_ref ON DELETE CASCADE ON UPDATE CASCADE
 	feeds			RSS feeds
 			feed_id					BIGINT(10)
 			feed_url				VARCHAR(255)
