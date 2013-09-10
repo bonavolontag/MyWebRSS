@@ -60,7 +60,7 @@ The api.mywebrss.net address offers the hability to get datas in JSON. These are
 							  /user/login			assertion (personna)										success, [error], token
 							       /logout			token (id)													success, [error]
 
-If the **success** variable returned is set to 0, the **error* variable indicate the reason of failure (the name of the parameter of the request, or a full sentence).
+If the **success** variable returned is set to 0, the **error** variable indicate the reason of failure (the name of the parameter of the request, or a full sentence).
 
 The **result** variable, if present, is an array and includes the variables shown between the {}.
 
@@ -75,10 +75,10 @@ This scripts need to be launch periodically (using crontab for example):
 	Script					|	Frequency		|	Description
 	----------------------------------------------------------------------------------------------------------
 	backup.php					every day			dump the database
-	cleanArticles.php			every hour			delete old articles (30 days for example)
-	cleanFeeds.php				every hour			delete unused feeds
-	cleanTokens.php				every hour			delete old Tokens
-	cleanUsers.php				every hour			delete inactive users
+	cleanArticles.php			every day			delete old articles (30 days for example)
+	cleanFeeds.php				every day			delete unused and wrong feeds
+	cleanTokens.php				every day			delete old Tokens
+	cleanUsers.php				every day			delete inactive users
 	refreshFeeds.php			every minutes		refresh articles for feeds (get new datas every 5 minutes)
 
 DATABASE
@@ -117,7 +117,7 @@ Detail
 			feed_title				VARCHAR(255)
 			feed_description		TEXT
 			feed_date				INT(10)			linux timestamp
-			feed_error				INT(1)
+			feed_error				INT(10)			linux timestamp
 		=> feed_id PRIMARY auto_increment
 		=> feed_url UNIQUE
 	articles		articles of each RSS feeds
