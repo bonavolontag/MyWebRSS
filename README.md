@@ -16,11 +16,9 @@ The API is developped in PHP and uses a MySQL database. The datas send are in JS
 
 INSTALLATION
 ------------
-The **html5/** folder needs to be placed in a web server (no need of PHP). The URL of the API needs to be set in the **window.mywebrss** variable, in **js/app/main.js** file.
+The **html5/** folder needs to be placed in a web server (no need of PHP), and it will work !
 
-The database can be created using the **mywebrss.sql** file.
-
-The **api/** and **cron/** need a PHP server. The configuration of the MySQL database needs to be set in the **conf.php** file in each folder.
+The **api/** and **cron/** are not necessary if you just want to use the official API server (**https://api.mywebrss.net**). If you want to install it, you will need a PHP server. A MySQL database needs to be created using the **mywebrss.sql** file and the credentials needs to be set in the **conf.php** file in each folder.
 
 If your **api/** server doesn't use SSL, you may want to comment this lines in **api/.htaccess**:
 
@@ -143,8 +141,8 @@ Detail
 TODO
 ----
 Informations in this document will be implemented in beta version. For the service to be usefull, this could be added:
-* language support
-* adding a share button (Twitter, Facebook)
-* add a developper key system for the API
-* change the email address (with confirmation email sent)
-* delete the account
+* HTML5: language support
+* HTML5: adding a share button (Twitter, Facebook)
+* API: add a developper key system
+* API: change the email address (with confirmation email sent)
+* API: delete the account
